@@ -2,14 +2,42 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1">
-	<persistence-unit name="essai" transaction-type="RESOURCE_LOCAL">
+	
+	<persistence-unit name="formation" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>entity.Emprunt</class>
+		<class>entity.Client</class>
+		<class>entity.Livre</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://bntwwkq07-mysql.services.clever-cloud.com:3306/bntwwkq07" />
-			<property name="javax.persistence.jdbc.user" value="utreh9jcieadxrso" />
-			<property name="javax.persistence.jdbc.password" value="5jnmKQAuUn9A2b97oQy" />
-			<property name="javax.persistence.jdbc.driver" value=" " />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://Localhost:3306/formation" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.archive.autodetection" value="" />
 		</properties>
 	</persistence-unit>
+	
+	<persistence-unit name="banque" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>banque.entity.Banque</class>
+		<class>banque.entity.Client</class>
+		<class>banque.entity.Compte</class>
+		<class>banque.entity.Operation</class>
+		<class>banque.entity.Adresse</class>
+		<!-- <class>banque.entity.AssuranceVie</class>
+		<class>banque.entity.LivretA</class>
+		<class>banque.entity.Virement</class> -->
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://Localhost:3306/banque" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.archive.autodetection" value="" />
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+		</properties>
+	</persistence-unit>
+	
 </persistence>

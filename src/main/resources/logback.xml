@@ -8,6 +8,9 @@
 		</encoder>
 	</appender>
 	
+	<!-- level = FATAL > ERROR > WARN > INFO > DEBUG > TRACE -->
+	<logger name="org.hibernate" level="ERROR" />
+	
 	<!-- règle de logs par défaut. Ici : niveau INFO vers la sortie standard --> 
 	<root level = "INFO">
 		<appender-ref ref = "STDOUT"/>
