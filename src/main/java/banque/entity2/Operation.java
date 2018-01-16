@@ -1,23 +1,24 @@
-package banque.entity;
+package banque.entity2;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
 /**
  * @author Simon SUDRE
  * class Operation
  */
-@Entity
-@Table(name="OPARATION")
+@MappedSuperclass
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Operation {
 
 	/** id : {@link Integer} */

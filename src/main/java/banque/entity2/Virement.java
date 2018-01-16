@@ -1,16 +1,14 @@
-package banque.entity;
+package banque.entity2;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * @author Simon SUDRE
  * class virement
  */
 @Entity
-@Table(name="VIREMENT")
-public class Virement extends Operation{
+public class Virement extends Operation {
 	
 	/** beneficiaire : {@link String} */
 	@Column(name="BENEFICIAIRE", length=50, nullable=false)
@@ -37,5 +35,13 @@ public class Virement extends Operation{
 	 */
 	public void setBeneficiaire(String beneficiaire) {
 		this.beneficiaire = beneficiaire;
+	}
+
+	/* (non-Javadoc)
+	 * @see banque.entity.Operation#toString()
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + " Virement [beneficiaire=" + beneficiaire + "]";
 	}
 }

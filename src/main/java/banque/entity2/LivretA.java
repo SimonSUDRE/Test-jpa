@@ -1,16 +1,14 @@
-package banque.entity;
+package banque.entity2;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * @author Simon SUDRE
  * class Livret A
  */
 @Entity
-@Table(name="LIVRETA")
-public class LivretA {
+public class LivretA extends Compte {
 
 	/** taux : {@link Double} */
 	@Column(name="TAUX", length=4, nullable=false)
@@ -37,5 +35,13 @@ public class LivretA {
 	 */
 	public void setTaux(Double taux) {
 		this.taux = taux;
+	}
+
+	/* (non-Javadoc)
+	 * @see banque.entity.Compte#toString()
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + " LivretA [taux=" + taux + "]";
 	}
 }

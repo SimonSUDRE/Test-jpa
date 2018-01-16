@@ -1,4 +1,4 @@
-package banque.entity;
+package banque.entity2;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,14 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  * @author Simon SUDRE
  * class Banque
  */
 @Entity
-@Table(name="BANQUE")
 public class Banque {
 	
 	/** id : {@link Integer} */

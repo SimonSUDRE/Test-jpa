@@ -1,4 +1,4 @@
-package banque.entity;
+package banque.entity2;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -14,14 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  * @author Simon SUDRE
  * class Client
  */
 @Entity
-@Table(name="CLIENT")
 public class Client {
 
 	/** id : {@link Integer} */
@@ -47,7 +45,7 @@ public class Client {
 	
 	/** banque : {@link Banque}*/
 	@ManyToOne
-	@JoinColumn(name="BANQUE")
+	@JoinColumn(name="ID_BANQUE")
 	private Banque banque;
 	
 	/** comptes : {@link Set}<{@link Compte}>*/

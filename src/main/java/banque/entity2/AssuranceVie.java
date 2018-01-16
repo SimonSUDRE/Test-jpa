@@ -1,17 +1,15 @@
-package banque.entity;
+package banque.entity2;
 
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * @author Simon SUDRE
  * class Assurance vie
  */
 @Entity
-@Table(name="ASSURANCEVIE")
 public class AssuranceVie extends Compte {
 
 	/** dateFin : {@link LocalDate} */
@@ -59,5 +57,13 @@ public class AssuranceVie extends Compte {
 	 */
 	public void setTaux(Double taux) {
 		this.taux = taux;
+	}
+
+	/* (non-Javadoc)
+	 * @see banque.entity.Compte#toString()
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + " AssuranceVie [dateFin=" + dateFin + ", taux=" + taux + "]";
 	}
 }

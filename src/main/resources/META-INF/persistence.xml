@@ -20,14 +20,33 @@
 	
 	<persistence-unit name="banque" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>banque.entity.Banque</class>
 		<class>banque.entity.Client</class>
+		<class>banque.entity.Adresse</class>
+		<class>banque.entity.Banque</class>
 		<class>banque.entity.Compte</class>
 		<class>banque.entity.Operation</class>
-		<class>banque.entity.Adresse</class>
-		<!-- <class>banque.entity.AssuranceVie</class>
-		<class>banque.entity.LivretA</class>
-		<class>banque.entity.Virement</class> -->
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://Localhost:3306/banque" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.archive.autodetection" value="" />
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="banque2" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>banque.entity2.Client</class>
+		<class>banque.entity2.Adresse</class>
+		<class>banque.entity2.Banque</class>
+		<class>banque.entity.Compte</class>
+		<class>banque.entity.Operation</class>
+		<class>banque.entity2.AssuranceVie</class>
+		<class>banque.entity2.LivretA</class>
+		<class>banque.entity2.Virement</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://Localhost:3306/banque" />
 			<property name="javax.persistence.jdbc.user" value="root" />

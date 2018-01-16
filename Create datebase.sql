@@ -55,3 +55,9 @@ insert into compo VALUES (8, 3, 5);
 
 create database if not exists banque;
 use banque;
+
+select * from client;
+select * from banque;
+select * from compte;
+select * from compo;
+select * from operation;
