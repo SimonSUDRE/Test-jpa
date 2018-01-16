@@ -83,7 +83,6 @@ public class TestJpa1 {
 		
 		c = em.find(Client.class, 1);
 		LOG.info(c.toString());
-		LOG.info(c.getAdresse().toString());
 		
 		b = em.find(Banque.class, 1);
 		LOG.info(b.toString());

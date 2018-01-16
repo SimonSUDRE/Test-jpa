@@ -182,6 +182,6 @@ public class Client {
 	 */
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", ddn=" + dateDeNaissance + "]";
+		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", ddn=" + dateDeNaissance + "] \n\t" + this.getAdresse().toString();
 	}
 }

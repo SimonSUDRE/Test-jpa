@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,9 @@ import banque.entity2.Adresse;
 import banque.entity2.AssuranceVie;
 import banque.entity2.Banque;
 import banque.entity2.Client;
+import banque.entity2.Compte;
 import banque.entity2.LivretA;
+import banque.entity2.Operation;
 import banque.entity2.Virement;
 
 /**
@@ -52,6 +55,13 @@ public class TestJpa2 {
 		b.getClients().add(c);
 		c.setBanque(b);
 		
+		Compte comp = new Compte();
+		comp.setNumero(124578963);
+		comp.setSolde(125478963.12);
+		
+		comp.getClients().add(c);
+		c.getComptes().add(comp);
+		
 		LivretA la = new LivretA();
 		la.setNumero(124578963);
 		la.setSolde(125478963.12);
@@ -69,11 +79,10 @@ public class TestJpa2 {
 		av.getClients().add(c);
 		c.getComptes().add(av);
 		
-		Virement o = new Virement();
+		Operation o = new Operation();
 		o.setDate(LocalDateTime.of(LocalDate.of(2015, 11, 22), LocalTime.of(11, 30, 38)));
 		o.setMotif("donation");
-		o.setMontant(150.21);	
-		o.setBeneficiaire("Charles HENRY");
+		o.setMontant(150.21);
 
 		o.setCompte(la);
 		la.getOperations().add(o);
@@ -87,37 +96,94 @@ public class TestJpa2 {
 		v.setCompte(av);
 		av.getOperations().add(v);	
 		
-		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("banque2");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		
-		em.persist(c);
-		em.persist(b);
-		em.persist(la);
-		em.persist(av);
-		em.persist(o);
-		em.persist(v);
+		try {			
+			em.persist(c);
+			em.persist(b);
+			em.persist(comp);
+			em.persist(la);
+			em.persist(av);
+			em.persist(o);
+			em.persist(v);
+			
+			transaction.commit();
+			em.close();
+			em = emf.createEntityManager();
+			
+			LOG.info("");
+			
+			c = em.find(Client.class, 1);
+			LOG.info(c.toString());
+			for(Compte co : c.getComptes()) {
+				LOG.info(co.toString());
+			}
+			LOG.info(c.getBanque().toString());
+			
+			LOG.info("");
+			
+			b = em.find(Banque.class, 1);
+			LOG.info(b.toString());
+			for(Client cl : b.getClients()) {
+				LOG.info(cl.toString());
+			}
+			
+			LOG.info("");
+			
+			comp = em.find(Compte.class, 1);
+			LOG.info(comp.toString());
+			for(Client cl : comp.getClients()) {
+				LOG.info(cl.toString());
+			}
+			for(Operation op : comp.getOperations()) {
+				LOG.info(op.toString());
+			}
+
+			LOG.info("");
+			
+			la = em.find(LivretA.class, 2);
+			LOG.info(la.toString());
+			for(Client cl : la.getClients()) {
+				LOG.info(cl.toString());
+			}
+			for(Operation op : la.getOperations()) {
+				LOG.info(op.toString());
+			}
+			
+			LOG.info("");
+			
+			av = em.find(AssuranceVie.class, 3);
+			LOG.info(av.toString());
+			for(Client cl : av.getClients()) {
+				LOG.info(cl.toString());
+			}
+			for(Operation op : av.getOperations()) {
+				LOG.info(op.toString());
+			}
+			
+			LOG.info("");
+			
+			o = em.find(Operation.class, 1);
+			LOG.info(o.toString());
+			LOG.info(o.getCompte().toString());
+			
+			LOG.info("");
+			
+			v = em.find(Virement.class, 2);
+			LOG.info(v.toString());
+			LOG.info(v.getCompte().toString());
+			
+			em.close();
+		}
+		catch(HibernateException he) {
+			if(transaction.isActive()) {
+				transaction.rollback();
+			}
+		}
 		
-		transaction.commit();
-		
-		c = em.find(Client.class, 1);
-		b = em.find(Banque.class, 1);
-		la = em.find(LivretA.class, 1);
-		av = em.find(AssuranceVie.class, 1);
-		o = em.find(Virement.class, 1);
-		v = em.find(Virement.class, 1);
-		
-		LOG.info(c.toString());
-		LOG.info(c.getAdresse().toString());
-		LOG.info(b.toString());
-		LOG.info(la.toString());
-		LOG.info(av.toString());
-		LOG.info(o.toString());
-		LOG.info(v.toString());
-		
-		em.close();
 		emf.close();
 	}
 }

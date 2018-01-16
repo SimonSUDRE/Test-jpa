@@ -42,8 +42,8 @@
 		<class>banque.entity2.Client</class>
 		<class>banque.entity2.Adresse</class>
 		<class>banque.entity2.Banque</class>
-		<class>banque.entity.Compte</class>
-		<class>banque.entity.Operation</class>
+		<class>banque.entity2.Compte</class>
+		<class>banque.entity2.Operation</class>
 		<class>banque.entity2.AssuranceVie</class>
 		<class>banque.entity2.LivretA</class>
 		<class>banque.entity2.Virement</class>
