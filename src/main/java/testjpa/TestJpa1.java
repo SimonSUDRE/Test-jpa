@@ -56,7 +56,6 @@ public class TestJpa1 {
 		comp.setSolde(12455.12);
 		
 		comp.getClients().add(c);
-		c.getComptes().add(comp);
 		
 		Operation o = new Operation();
 		o.setDate(LocalDateTime.of(LocalDate.of(2005, 11, 22), LocalTime.of(12, 30, 38)));

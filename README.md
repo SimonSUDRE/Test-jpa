@@ -11,6 +11,7 @@
 ##
 
 **Cette propriété ne créé que les nouvelles tables après chaque redémarrage:**
+**Activation de la génération des tables manquantes uniquement**
 
 ```sh
 <property name="hibernate.hbm2ddl.auto" value="update"/>
@@ -33,14 +34,6 @@
 
 ```sh
 <property name="hibernate.archive.autodetection" value=""/>
-```
-
-##
-
-**Activation de la génération des tables manquantes uniquement**
-
-```sh
-<property name="hibernate.hbm2ddl.auto" value="update" />
 ```
 
 ##

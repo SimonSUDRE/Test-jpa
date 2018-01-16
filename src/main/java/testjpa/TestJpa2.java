@@ -60,14 +60,12 @@ public class TestJpa2 {
 		comp.setSolde(125478963.12);
 		
 		comp.getClients().add(c);
-		c.getComptes().add(comp);
 		
 		LivretA la = new LivretA();
 		la.setNumero(124578963);
 		la.setSolde(125478963.12);
 		la.setTaux(10.24);
 		
-		la.getClients().add(c);
 		c.getComptes().add(la);
 		
 		AssuranceVie av = new AssuranceVie();
@@ -77,7 +75,6 @@ public class TestJpa2 {
 		av.setTaux(5.34);
 		
 		av.getClients().add(c);
-		c.getComptes().add(av);
 		
 		Operation o = new Operation();
 		o.setDate(LocalDateTime.of(LocalDate.of(2015, 11, 22), LocalTime.of(11, 30, 38)));
