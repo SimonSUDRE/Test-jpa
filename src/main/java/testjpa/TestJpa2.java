@@ -176,11 +176,16 @@ public class TestJpa2 {
 			em.close();
 		}
 		catch(HibernateException he) {
-			if(transaction.isActive()) {
+			if(transaction != null && transaction.isActive()) {
 				transaction.rollback();
 			}
 		}
-		
+		finally {
+			if(em != null && em.isOpen()) {
+				em.close();
+				emf.close();
+			}
+		}
 		emf.close();
 	}
 }

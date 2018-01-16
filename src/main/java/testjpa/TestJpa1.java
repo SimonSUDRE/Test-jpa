@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,28 +72,43 @@ public class TestJpa1 {
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		
-		em.persist(c);
-		em.persist(b);
-		em.persist(comp);
-		em.persist(o);
-		
-		transaction.commit();
-		
-		LOG.info("");
-		
-		c = em.find(Client.class, 1);
-		LOG.info(c.toString());
-		
-		b = em.find(Banque.class, 1);
-		LOG.info(b.toString());
-		
-		comp = em.find(Compte.class, 1);
-		LOG.info(comp.toString());
-		
-		o = em.find(Operation.class, 1);
-		LOG.info(o.toString());
-		
-		em.close();
+		try {
+			em.persist(c);
+			em.persist(b);
+			em.persist(comp);
+			em.persist(o);
+			
+			transaction.commit();
+			em.close();
+			em = emf.createEntityManager();
+			
+			LOG.info("");
+			
+			c = em.find(Client.class, 1);
+			LOG.info(c.toString());
+			
+			b = em.find(Banque.class, 1);
+			LOG.info(b.toString());
+			
+			comp = em.find(Compte.class, 1);
+			LOG.info(comp.toString());
+			
+			o = em.find(Operation.class, 1);
+			LOG.info(o.toString());
+			
+			em.close();
+		}
+		catch(HibernateException he) {
+			if(transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+		}
+		finally {
+			if(em != null && em.isOpen()) {
+				em.close();
+				emf.close();
+			}
+		}
 		emf.close();
 	}
 }
