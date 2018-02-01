@@ -176,7 +176,7 @@ public class TestJpa2 {
 			em.close();
 		}
 		catch(HibernateException he) {
-			if(transaction != null && transaction.isActive()) {
+			if(transaction.isActive()) {
 				transaction.rollback();
 			}
 		}
