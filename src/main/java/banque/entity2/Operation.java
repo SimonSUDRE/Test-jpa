@@ -43,13 +43,6 @@ public class Operation {
 	private Compte compte;
 	
 	/**
-	 * Constructeur par default
-	 */
-	public Operation() {
-		
-	}
-	
-	/**
 	 * GET id of Client
 	 * @return {@link Integer} id
 	 */

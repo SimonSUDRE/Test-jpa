@@ -26,13 +26,15 @@ import banque.entity.Operation;
 public class TestJpa1 {
 
 	/** LOG : Logger */
-	private static Logger LOG = LoggerFactory.getLogger(TestJpa.class);
+	private static final Logger LOG = LoggerFactory.getLogger(TestJpa.class);
 	
 	/**
 	 * methode execution
 	 * @param args pas utiliser
 	 */
 	public static void main(String[] args) {
+		String s = "";
+		
 		Client c = new Client();
 		c.setDateDeNaissance(LocalDate.of(1991, 10, 15));
 		c.setNom("Jean");
@@ -85,21 +87,25 @@ public class TestJpa1 {
 			LOG.info("");
 			
 			c = em.find(Client.class, 1);
-			LOG.info(c.toString());
+			s = c.toString();
+			LOG.info(s);
 			
 			b = em.find(Banque.class, 1);
-			LOG.info(b.toString());
+			s = b.toString();
+			LOG.info(s);
 			
 			comp = em.find(Compte.class, 1);
-			LOG.info(comp.toString());
+			s = comp.toString();
+			LOG.info(s);
 			
 			o = em.find(Operation.class, 1);
-			LOG.info(o.toString());
+			s = o.toString();
+			LOG.info(s);
 			
 			em.close();
 		}
 		catch(HibernateException he) {
-			if(transaction != null && transaction.isActive()) {
+			if(transaction.isActive()) {
 				transaction.rollback();
 			}
 		}

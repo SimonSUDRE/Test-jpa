@@ -29,13 +29,15 @@ import banque.entity2.Virement;
 public class TestJpa2 {
 
 	/** LOG : Logger */
-	private static Logger LOG = LoggerFactory.getLogger(TestJpa.class);
+	private static final Logger LOG = LoggerFactory.getLogger(TestJpa.class);
 	
 	/**
 	 * methode execution
 	 * @param args pas utiliser
 	 */
 	public static void main(String[] args) {
+		String s = "";
+		
 		Client c = new Client();
 		c.setDateDeNaissance(LocalDate.of(1990, 10, 15));
 		c.setNom("Jean");
@@ -114,64 +116,82 @@ public class TestJpa2 {
 			LOG.info("");
 			
 			c = em.find(Client.class, 1);
-			LOG.info(c.toString());
+			s = c.toString();
+			LOG.info(s);
 			for(Compte co : c.getComptes()) {
-				LOG.info(co.toString());
+				s = co.toString();
+				LOG.info(s);
 			}
-			LOG.info(c.getBanque().toString());
+			s = c.getBanque().toString();
+			LOG.info(s);
 			
 			LOG.info("");
 			
 			b = em.find(Banque.class, 1);
-			LOG.info(b.toString());
+			s = b.toString();
+			LOG.info(s);
 			for(Client cl : b.getClients()) {
-				LOG.info(cl.toString());
+				s = cl.toString();
+				LOG.info(s);
 			}
 			
 			LOG.info("");
 			
 			comp = em.find(Compte.class, 1);
-			LOG.info(comp.toString());
+			s = comp.toString();
+			LOG.info(s);
 			for(Client cl : comp.getClients()) {
-				LOG.info(cl.toString());
+				s = cl.toString();
+				LOG.info(s);
 			}
 			for(Operation op : comp.getOperations()) {
-				LOG.info(op.toString());
+				s = op.toString();
+				LOG.info(s);
 			}
 
 			LOG.info("");
 			
 			la = em.find(LivretA.class, 2);
-			LOG.info(la.toString());
+			s = la.toString();
+			LOG.info(s);
 			for(Client cl : la.getClients()) {
-				LOG.info(cl.toString());
+				s = cl.toString();
+				LOG.info(s);
 			}
 			for(Operation op : la.getOperations()) {
-				LOG.info(op.toString());
+				s = op.toString();
+				LOG.info(s);
 			}
 			
 			LOG.info("");
 			
 			av = em.find(AssuranceVie.class, 3);
-			LOG.info(av.toString());
+			s = av.toString();
+			LOG.info(s);
 			for(Client cl : av.getClients()) {
-				LOG.info(cl.toString());
+				s = cl.toString();
+				LOG.info(s);
 			}
 			for(Operation op : av.getOperations()) {
-				LOG.info(op.toString());
+				s = op.toString();
+				LOG.info(s);
 			}
 			
 			LOG.info("");
 			
 			o = em.find(Operation.class, 1);
-			LOG.info(o.toString());
-			LOG.info(o.getCompte().toString());
+			s = o.toString();
+			LOG.info(s);
+			s = o.getCompte().toString();
+			LOG.info(s);
 			
 			LOG.info("");
 			
 			v = em.find(Virement.class, 2);
-			LOG.info(v.toString());
-			LOG.info(v.getCompte().toString());
+			s = v.toString();
+			LOG.info(s);
+			s = v.getCompte().toString();
+			LOG.info(s);
 			
 			em.close();
 		}

@@ -27,13 +27,6 @@ public class Adresse {
 	private String ville;
 	
 	/**
-	 * Constructeur par default
-	 */
-	public Adresse() {
-		
-	}
-	
-	/**
 	 * GET numero of Adresse
 	 * @return {@link Integer} numero
 	 */

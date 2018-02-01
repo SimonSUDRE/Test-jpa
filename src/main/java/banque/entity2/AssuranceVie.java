@@ -19,13 +19,7 @@ public class AssuranceVie extends Compte {
 	/**	taux : {@link Double} */
 	@Column(name="TAUX", length=4, nullable=false)
 	private Double taux;
-	
-	/**
-	 * Constructeur par default
-	 */
-	public AssuranceVie() {
-		
-	}
+
 
 	/**
 	 * GET dateFin of AssuranceVie

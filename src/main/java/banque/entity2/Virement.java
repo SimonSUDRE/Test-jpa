@@ -13,13 +13,6 @@ public class Virement extends Operation {
 	/** beneficiaire : {@link String} */
 	@Column(name="BENEFICIAIRE", length=50, nullable=false)
 	private String beneficiaire;
-	
-	/**
-	 * Constructeur par default
-	 */
-	public Virement() {
-		
-	}
 
 	/**
 	 * GET beneficiaire of Virement

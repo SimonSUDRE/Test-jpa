@@ -13,13 +13,6 @@ public class LivretA extends Compte {
 	/** taux : {@link Double} */
 	@Column(name="TAUX", length=4, nullable=false)
 	private Double taux;
-	
-	/**
-	 * Constructeur par default
-	 */
-	public LivretA() {
-		
-	}
 
 	/**
 	 * GET taux of LivretA
